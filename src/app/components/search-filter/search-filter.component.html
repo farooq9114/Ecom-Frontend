@@ -1,0 +1,101 @@
+<!-- Search Filters -->
+  <div
+    class="d-flex flex-wrap justify-content-center align-items-center gap-3 mb-5 p-3 bg-light rounded-4 shadow-sm"
+  >
+    <!-- Name Search -->
+    <div class="d-flex align-items-center gap-2">
+      <i class="bi bi-search text-primary fs-5"></i>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by name"
+        [(ngModel)]="searchName"
+        (input)="applyFilters()"
+        style="width: 200px"
+      />
+    </div>
+
+
+<!-- Perfume Cards -->
+  <!-- <div class="row justify-content-center">
+    <div class="col-md-4 mb-4" *ngFor="let p of filteredPerfumes">
+      <div class="card shadow-sm border-0 rounded-4 h-100 perfume-card overflow-hidden">
+        <img
+          [src]="p.imageUrl || 'https://placehold.co/300x200?text=No+Image'"
+          class="card-img-top perfume-img"
+          alt="{{ p.name }}"
+        />
+
+        <div class="card-body text-center p-3">
+          <h5 class="card-title fw-semibold">{{ p.name }}</h5>
+          <p class="text-muted small mb-2">{{ p.description }}</p>
+          <p class="fw-bold text-primary mb-2">₹{{ p.price }}</p>
+          <p class="text-secondary mb-3">{{ p.gender }}</p>
+
+          <button
+            class="btn btn-outline-primary btn-sm"
+            (click)="addToCart(p)"
+          >
+            <i class="bi bi-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let perfume of filteredPerfumes">
+        <div class="card h-100 shadow-sm d-flex flex-column">
+
+          <!-- Image -->
+          <img
+            [src]="perfume.imageUrl"
+            class="card-img-top"
+            alt="{{ perfume.name }}"
+            style="height: 550px; object-fit: cover;"
+          />
+
+          <!-- Card Body -->
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title">{{ perfume.name }}</h5>
+              <p class="card-text text-muted">{{ perfume.description }}</p>
+              <p class="card-text">
+                <strong>Gender:</strong> {{ perfume.gender | titlecase }}
+              </p>
+              <h6 class="text-success">
+                ₹{{ perfume.price | number: '1.2-2' }}
+              </h6>
+
+              <span
+                *ngIf="perfume.latestLaunch"
+                class="badge bg-warning text-dark"
+              >
+                New Launch 🌟
+              </span>
+            </div>
+
+            <!-- Button (always inside card-body bottom) -->
+            <div class="mt-3 ">
+              <button
+                id="btn"
+                class="btn btn-outline-primary w-20"
+                (click)="addToCart(perfume)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Empty State -->
+  <div *ngIf="filteredPerfumes.length === 0" class="text-center mt-5">
+    <h5>No perfumes found 😢</h5>
+    <p class="text-muted">Try changing your search filters.</p>
+  </div>
+</div>
+
