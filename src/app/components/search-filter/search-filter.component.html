@@ -1,9 +1,9 @@
 <!-- Search Filters -->
   <div
-    class="d-flex flex-wrap justify-content-center align-items-center gap-3 mb-5 p-3 bg-light rounded-4 shadow-sm"
+    class="search-section d-flex flex-wrap justify-content-center align-items-center gap-3 mb-5 p-3 bg-light rounded-4 shadow-sm"
   >
     <!-- Name Search -->
-    <div class="d-flex align-items-center gap-2">
+    <div class="d-flex align-items-center gap-2 mt-4 mb-2">
       <i class="bi bi-search text-primary fs-5"></i>
       <input
         type="text"
@@ -11,37 +11,9 @@
         placeholder="Search by name"
         [(ngModel)]="searchName"
         (input)="applyFilters()"
-        style="width: 200px"
+        style="width: 350px"
       />
     </div>
-
-
-<!-- Perfume Cards -->
-  <!-- <div class="row justify-content-center">
-    <div class="col-md-4 mb-4" *ngFor="let p of filteredPerfumes">
-      <div class="card shadow-sm border-0 rounded-4 h-100 perfume-card overflow-hidden">
-        <img
-          [src]="p.imageUrl || 'https://placehold.co/300x200?text=No+Image'"
-          class="card-img-top perfume-img"
-          alt="{{ p.name }}"
-        />
-
-        <div class="card-body text-center p-3">
-          <h5 class="card-title fw-semibold">{{ p.name }}</h5>
-          <p class="text-muted small mb-2">{{ p.description }}</p>
-          <p class="fw-bold text-primary mb-2">₹{{ p.price }}</p>
-          <p class="text-secondary mb-3">{{ p.gender }}</p>
-
-          <button
-            class="btn btn-outline-primary btn-sm"
-            (click)="addToCart(p)"
-          >
-            <i class="bi bi-cart-plus"></i> Add to Cart
-          </button>
-        </div>
-      </div>
-    </div>
-  </div> -->
 
   <div class="container-fluid">
     <div class="row">

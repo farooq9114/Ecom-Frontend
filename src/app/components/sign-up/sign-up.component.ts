@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../Services/user.service';
-import { response } from 'express';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,40 +9,27 @@ import { response } from 'express';
   styleUrl: './sign-up.component.css'
 })
 export class SignUpComponent {
-      user = {
+    user = {
     name: '',
     email: '',
     password: '',
     address: '',
     mobile:'' ,
   };
-  router: any;
 
-  constructor(private userService: UserService) {}
-
-  // onSubmit() {
-  //   console.log('User Data:', this.user);
-  //   this.userService.registerUser(this.user).subscribe({
-  //     next: (response) => {
-  //       console.log('Signup successful:', response);
-  //       alert('Account created successfully!');
-  //     },
-  //     error: (err) => {
-  //       console.error('Signup error:', err);
-  //     }
-  //   });
-  // }
+  constructor(private userService: UserService, private router: Router) {}
 
   onSubmit() {
+    console.log('User before submit:', this.user);
     this.userService.registerUser(this.user).subscribe(
       (response) => {
         alert('Signup successful!');
         this.router.navigate(['/login']);
       },
       (error) => {
+        console.log(this.user)
         alert('Email already exists or server error!');
-      }
-    );
-  }
+      });
+  }
 
 }

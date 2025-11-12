@@ -18,7 +18,7 @@ export interface Cart {
 })
 export class CartService {
 
-  private baseUrl = 'http://192.168.1.31:8080/cart'; // ✅ backend base URL
+  private baseUrl = 'http://192.168.1.17:8080/cart'; // ✅ backend base URL
 
   constructor(private http: HttpClient) {}
 

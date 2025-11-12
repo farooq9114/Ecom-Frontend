@@ -1,0 +1,110 @@
+/* 🌙 Elegant, Royal Footer Style */
+.footer {
+  background: linear-gradient(180deg, #3f3e3e, #1e1d1d);
+  color: #e6e6e6;
+  padding: 60px 20px 30px;
+  font-family: 'Playfair Display', serif;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  text-align: left;
+  gap: 30px;
+}
+
+/* Sections */
+.footer-section h3,
+.footer-section h4 {
+  color: #d4af37; /* champagne gold */
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.footer-section p,
+.footer-section a {
+  color: #ccc;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+/* 🌸 Brand Tagline */
+.brand {
+  font-size: 26px;
+  color: #f1dca7;
+  letter-spacing: 1px;
+}
+
+.tagline {
+  font-style: italic;
+  color: #b8b8b8;
+  margin-bottom: 15px;
+}
+
+/* 🌟 Social Icons */
+.social-icons a {
+  color: #d4af37;
+  font-size: 1.3rem;
+  margin-right: 12px;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #f8e9b0;
+  transform: scale(1.15);
+}
+
+/* 🔗 Links */
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+  text-decoration: none;
+  color: #bbb;
+}
+
+.footer-section ul li a:hover {
+  color: #d4af37;
+  padding-left: 5px;
+}
+
+/* 📞 Contact */
+.footer-section.contact p {
+  margin-bottom: 8px;
+}
+
+/* 🌈 Bottom Bar */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 40px;
+  text-align: center;
+  padding-top: 15px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.footer-bottom strong {
+  color: #d4af37;
+}
+
+.footer .brand-logo {
+  height: 100px;         /* adjust this value to control size */
+  width: auto;          /* keeps aspect ratio */
+  object-fit: contain;  /* ensures smooth scaling */
+  margin-bottom: 10px;  /* some breathing space */
+  opacity: 0.95;        /* slight transparency for classy look */
+  transition: transform 0.3s ease;
+}
+
+.footer .brand-logo:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}

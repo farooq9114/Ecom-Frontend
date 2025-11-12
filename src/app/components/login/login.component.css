@@ -1,0 +1,57 @@
+.card {
+  background-color: var(--dun);
+  border-radius: 12px;
+}
+
+h3 {
+  color: var(--coffee);
+}
+
+.btn-primary {
+  background-color: var(--coffee);
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--raw-umber);
+}
+
+.elegant-input {
+  border: 1px solid #d6cfc2;
+  border-radius: 8px;
+  background-color: #faf9f7;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.elegant-input:focus {
+  border-color: #d4af37;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+}
+
+.btn-royal {
+  background: linear-gradient(135deg, #d4af37, #f1e4b3, #bfa76b);
+  color: #1a1a1a;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(180, 160, 120, 0.4);
+}
+
+.btn-royal:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(180, 160, 120, 0.5);
+}
+
+.login-link {
+  color: #b2924f;
+  transition: color 0.3s ease;
+}
+
+.login-link:hover {
+  color: #d4af37;
+  text-decoration: underline;
+}
+

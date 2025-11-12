@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { ProductService } from './Services/product.service';
-import { NavigationEnd,Router } from '@angular/router';
+import { NavigationEnd,Router, RouterOutlet } from '@angular/router';
+import { fader } from './route-animations';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     standalone: false,
-    styleUrl: './app.component.css'
+    styleUrl: './app.component.css',
+    animations: [fader]
 })
 
 export class AppComponent {
@@ -14,8 +16,13 @@ export class AppComponent {
 
     username: string | null = null;
 
+    confirmLogoutBtn = false
+
     name: string =''
 
+     prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  }
   constructor(private router: Router) {}
 
   ngOnInit(): void {
@@ -39,12 +46,20 @@ export class AppComponent {
     }
   }
 
+  confirmLogout(): void {
+    this.confirmLogoutBtn = true;
+  }
+  cancelLogout(): void {
+    this.confirmLogoutBtn = false;
+  }
+
   // ✅ Logout function
   logout(): void {
     if (typeof window !== 'undefined') {
       sessionStorage.removeItem('name');
       sessionStorage.removeItem('uId');
       this.username = null;
+      this.confirmLogoutBtn = false;
       this.router.navigate(['/login']); // redirect to login page
     }
   }

@@ -1,67 +1,117 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav
+  class="navbar navbar-expand-lg navbar-light fixed-top"
+  style="
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  "
+>
   <div class="container-fluid">
     <!-- Left Side: Logo -->
-    <a class="navbar-brand" routerLink="/perfumes">Perfume Collection</a>
+    <a style="margin-right: 200px;" class="navbar-brand d-flex align-items-center" routerLink="/perfumes">
+      <img
+        src="https://res.cloudinary.com/dmm7meccp/image/upload/v1762878396/Screenshot_2025-11-11_213848-removebg-preview_1_v8ibnr.png"
+        alt="Perfume Collection Logo"
+        style="height: 50px; width: auto;"
+        class="me-2"
+      />
+    </a>
 
     <!-- Toggle Button for Mobile -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <!-- Navbar Items -->
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- Center Nav Items -->
+      <ul class="navbar-nav mx-auto text-center">
+        <li style="margin-right: 15px;" class="nav-item">
           <a class="nav-link" routerLink="/home" routerLinkActive="active"><strong>Home</strong></a>
         </li>
-        <li class="nav-item">
+        <li style="margin-right: 10px;" class="nav-item">
           <a class="nav-link" routerLink="/perfumes" routerLinkActive="active"><strong>Perfumes</strong></a>
         </li>
-
-        <li class="nav-item mx-2">
-          <a class="nav-link nav-hover d-flex align-items-center fw-semibold text-gradient-hover" routerLink="/search" routerLinkActive="active">
-            <i class="bi bi-search me-1"></i> Search
+        <li style="margin-right: 15px;" class="nav-item mx-2">
+          <a
+            class="nav-link nav-hover d-flex align-items-center justify-content-center fw-semibold text-gradient-hover"
+            routerLink="/search"
+            routerLinkActive="active"
+          >
+            <i class="bi bi-search me-1"></i><strong>Search</strong> 
           </a>
         </li>
-
-       <li class="nav-item">
+        <li style="margin-right:15px;" class="nav-item">
           <a class="nav-link" routerLink="/cart" routerLinkActive="active"><strong>Cart</strong></a>
         </li>
       </ul>
-    </div>
 
-    <!-- Right Side: Future Items -->
-    <div class="d-flex">
-      <ul class="navbar-nav">
-                <!-- Show username if logged in -->
-        <li *ngIf="username"
-          class="nav-item mx-2"><strong>
-          <i class="bi bi-person-circle me-1"></i> {{ username }}</strong>
-        </li>
+      <!-- Right Side Buttons -->
+<ul class="navbar-nav ms-lg-auto text-center">
+  <li *ngIf="username" class="nav-item mx-2">
+    <strong><i class="bi bi-person-circle me-1"></i>{{ username }}</strong>
+  </li>
 
-        <li class="nav-item">
-          <button class="btn btn-outline-light btn-sm" routerLink="/sign-up" routerLinkActive="active">Login/Signup</button>
-
-          <!-- <button class="btn btn-light btn-sm me-2" routerLink="/login" routerLinkActive="active"></button> -->
-        </li>
-
-         <!-- Logout button -->
-        <li *ngIf="username" class="nav-item ms-2">
-          <button
-            class="btn btn-outline-danger fw-semibold px-4 rounded-pill hover-btn-outline"
-            (click)="logout()"
+  <li *ngIf="!username" class="nav-item ms-3">
+          <a
+            class="btn btn-outline-gradient fw-semibold px-4 rounded-pill hover-btn-outline"
+            routerLink="/sign-up"
           >
-            <i class="bi bi-box-arrow-right me-1"></i> Logout
-          </button>
+            <i class="bi bi-person-plus me-1"></i> Signup
+          </a>
         </li>
 
-      </ul>
-      <!-- Example: You can replace with icons or buttons -->
+        <li *ngIf="!username" class="nav-item ms-2">
+          <a
+            class="btn btn-gradient fw-semibold px-4 rounded-pill hover-btn"
+            routerLink="/login"
+          >
+            <i class="bi bi-box-arrow-in-right me-1"></i> Login
+          </a>
+        </li>
+
+        <li *ngIf="username" class="nav-item ms-2 position-relative">
+  <!-- Logout Button -->
+  <button
+    *ngIf="!confirmLogoutBtn"
+    class="btn btn-outline-danger fw-semibold px-4 rounded-pill hover-btn-outline"
+    (click)="confirmLogout()"
+  >
+    <i class="bi bi-box-arrow-right me-1"></i> Logout
+  </button>
+
+</li>
+
+
+
+</ul>
+
     </div>
   </div>
 </nav>
 
-<!-- <div class="container mt-4"> -->
-  <router-outlet></router-outlet>
-<!-- </div> -->
+<div *ngIf="confirmLogoutBtn" class="luxury-toast">
+  <div class="luxury-toast-content text-center">
+    <h5 class="fw-bold">Are you sure you want to logout?</h5>
+    <p class="toast-subtitle">We’ll miss your essence...</p>
+    <div class="toast-actions mt-4">
+      <button style="color: black;" class="btn btn-luxury me-3 px-4" (click)="logout()">
+        Yes, Logout
+      </button>
+      <button class="btn btn-outline-light px-4" (click)="cancelLogout()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
 
+<div [@routeAnimations]="prepareRoute(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>
+
+<app-footer></app-footer>

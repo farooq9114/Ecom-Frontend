@@ -1,0 +1,74 @@
+/* Full-page centered layout */
+.signup-container {
+  background: linear-gradient(180deg, #fdfcf9, #f5f1e8, #ece5d8);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Elegant card styling */
+.signup-card {
+  background: linear-gradient(145deg, #ffffff, #f8f5ee);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 0 10px 25px rgba(80, 60, 30, 0.1);
+  width: 100%;
+  max-width: 500px;
+  transition: all 0.4s ease;
+}
+
+
+.signup-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 35px rgba(90, 70, 40, 0.15);
+}
+
+/* Title styling */
+.signup-title {
+  font-family: 'Playfair Display', serif;
+  color: #3b2f2f;
+  text-shadow: 0 1px 6px rgba(212, 175, 55, 0.15);
+}
+
+/* Elegant inputs */
+.elegant-input {
+  border-radius: 10px;
+  border: 1px solid #d6cfc2;
+  background-color: #fffdf9;
+  transition: all 0.3s ease;
+}
+
+.elegant-input:focus {
+  border-color: #d4af37;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+}
+
+/* Button - royal gold tone */
+.btn-royal {
+  background: linear-gradient(135deg, #c9b37b, #e3d3a3, #f6eecb);
+  color: #2c2c2c;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  transition: all 0.4s ease;
+  box-shadow: 0 5px 15px rgba(200, 170, 80, 0.3);
+}
+
+.btn-royal:hover {
+  background: linear-gradient(135deg, #d4af37, #f1e4b3, #c6ab5f);
+  transform: scale(1.03);
+  box-shadow: 0 6px 18px rgba(180, 150, 70, 0.45);
+}
+
+/* Login link */
+.login-link {
+  color: #b99742;
+  transition: color 0.3s ease;
+}
+
+.login-link:hover {
+  color: #d4af37;
+  text-decoration: underline;
+}

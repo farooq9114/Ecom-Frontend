@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ProductService {
 
-    private baseUrl = 'http://192.168.1.31:8080/perfume';
+    private baseUrl = 'http://192.168.1.17:8080/perfume';
 
     constructor(private http: HttpClient) {}
 

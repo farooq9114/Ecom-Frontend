@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-    private baseUrl = 'http://192.168.1.31:8080/user';
+    private baseUrl = 'http://192.168.1.17:8080/user';
 
     constructor(private http: HttpClient) {}
 
@@ -16,12 +16,12 @@ export class UserService {
   }
 
   loginUser(credentials: any): Observable<any> {
-
+    console.log('From service layer: ', credentials)
     return this.http.post(`${this.baseUrl}/login`, credentials);
   }
 
-   getUserId(): number | null {
+  getUserId(): number | null {
     const uid = sessionStorage.getItem('uId');
     return uid ? Number(uid) : null;
-    }
+  }
 }

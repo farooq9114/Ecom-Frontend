@@ -9,12 +9,12 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
 
 const routes: Routes = [
     {path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent },
-    { path: 'perfumes', component: PerfumeComponent},
-    { path: 'sign-up', component: SignUpComponent},
-    { path: 'login', component: LoginComponent},
-    { path: 'cart', component: CartComponent},
-    { path: 'search', component: SearchFilterComponent},
+    { path: 'home', component: HomeComponent,  data: { animation: 'HomeComponent' } },
+    { path: 'perfumes', component: PerfumeComponent,  data: { animation: 'PerfumeComponent' }},
+    { path: 'sign-up', component: SignUpComponent, data: { animation: 'SignUpComponent' }},
+    { path: 'login', component: LoginComponent, data: { animation: 'LoginComponent' }},
+    { path: 'cart', component: CartComponent, data: { animation: 'CartComponent' }},
+    { path: 'search', component: SearchFilterComponent, data: { animation: 'SearchFilterComponent' }},
 
 ];
 

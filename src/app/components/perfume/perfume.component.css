@@ -4,5 +4,108 @@
 }
 
 #btn{
-    margin-left: 270px;
+    margin-left: 315px;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== Perfume Card Section Styling (Luxury Theme) ===== */
+.perfume-section {
+  background: linear-gradient(180deg, #f9f8f6, #eee7db);
+  padding: 2rem 1rem;
+  border-radius: 150px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Perfume Card ===== */
+.perfume-card {
+  border: none;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fffefb, #f5f0e6);
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+}
+
+.perfume-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+}
+
+/* ===== Image ===== */
+.perfume-image {
+  height: 480px;
+  width: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+  border-bottom: 1px solid #e8decf;
+}
+
+.perfume-card:hover .perfume-image {
+  transform: scale(1.05);
+}
+
+/* ===== Text Styling ===== */
+.perfume-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  color: #2c2c2c;
+}
+
+.price-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1b1b2b; /* gold accent to match navbar/footer */
+}
+
+/* ===== Add to Cart Button ===== */
+.btn-royal {
+  background: linear-gradient(145deg, #d4af37, #f1e4b3, #bfa76b);
+  color: #1a1a1a;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  padding: 0.75rem 2rem;
+  letter-spacing: 0.5px;
+  transition: all 0.4s ease;
+  box-shadow: 0 5px 14px rgba(212, 175, 55, 0.4);
+  background-size: 100% 100%;
+}
+
+.btn-royal:hover {
+  background: linear-gradient(145deg, #bfa76b, #e4c969, #d4af37);
+  color: #fff;
+  transform: scale(1.07);
+  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.5);
+}
+
+.mt-3 {
+  display: flex;
+  justify-content: flex-end; /* pushes button to right */
+}
+/* ===== Filter Dropdowns ===== */
+.filter-select {
+  background: linear-gradient(90deg, #faf8f4, #efe9dc);
+  border: 1px solid #d4af37;
+  border-radius: 12px;
+  color: #3b2f1f;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.filter-select:hover,
+.filter-select:focus {
+  border-color: #bfa76b;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+/* Smooth Transitions */
+.perfume-card,
+.filter-select,
+.btn-royal {
+  transition: all 0.35s ease-in-out;
 }

@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  padding-top: 60px; /* adjust to your navbar height */
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.carousel,
+.container-fluid,
+.row {
+  margin-right: 0;
+  margin-left: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.carousel-item img {
+  width: 100%;
+  max-width: 100vw;
+  object-fit: cover;
+}

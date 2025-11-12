@@ -1,0 +1,157 @@
+/* ===== SEARCH SECTION ===== */
+.search-section {
+  background: linear-gradient(135deg, #f9f7f3, #f1ebe0);
+  border-radius: 25px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 10px 35px rgba(180, 150, 100, 0.1);
+  transition: all 0.4s ease;
+}
+
+.search-section:hover {
+  box-shadow: 0 12px 45px rgba(160, 130, 90, 0.15);
+  transform: translateY(-3px);
+}
+
+/* ===== INPUT & FILTERS ===== */
+.search-section input.form-control {
+  border-radius: 15px;
+  border: 1px solid #d6cfc2;
+  background: linear-gradient(135deg, #ffffff, #f7f3ec);
+  color: #3b2f2f;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+.search-section input.form-control:focus {
+  border-color: #b08d57;
+  box-shadow: 0 0 10px rgba(176, 141, 87, 0.35);
+  background: linear-gradient(135deg, #fff, #f3ecdf);
+}
+
+/* Search icon hover animation */
+.bi-search {
+  color: #a38350;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.bi-search:hover {
+  color: #7c633b;
+  transform: scale(1.15);
+}
+
+/* ===== FILTER BOX ===== */
+.filter-box {
+  background: linear-gradient(145deg, #fdfdfc, #f2ede4);
+  border: 1px solid #e5decf;
+  border-radius: 18px;
+  padding: 1rem 1.5rem;
+  transition: all 0.4s ease;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.filter-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== CARD ===== */
+.card {
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #ffffff, #f7f3ed);
+  box-shadow: 0 8px 25px rgba(150, 130, 90, 0.1);
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(150, 130, 90, 0.2);
+}
+
+/* Card Image */
+.card-img-top {
+  height: 450px;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+/* ===== BUTTON ===== */
+.btn-outline-primary {
+  background: linear-gradient(135deg, #cbbba0, #e0d4c1);
+  border: none;
+  color: #2e261b;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 0.6rem 1.6rem;
+  box-shadow: 0 6px 15px rgba(190, 170, 130, 0.3);
+  transition: all 0.35s ease;
+}
+
+.btn-outline-primary:hover {
+  background: linear-gradient(135deg, #d1b68c, #bfa176);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(170, 130, 70, 0.45);
+  transform: scale(1.05);
+}
+
+/* ===== EMPTY STATE ===== */
+.text-center h5 {
+  font-family: 'Playfair Display', serif;
+  color: #7a6a55;
+}
+
+.text-center p {
+  color: #a49682;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Subtle shimmer on hover */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0), rgba(255,255,255,0.4), rgba(255, 255, 255, 0));
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+
+.card:hover::before {
+  left: 125%;
+  opacity: 1;
+}
+
+.mt-3 {
+  display: flex;
+  justify-content: flex-end; /* pushes button to right */
+}
+
+/* Smooth transition for everything */
+* {
+  transition: all 0.3s ease;
+}

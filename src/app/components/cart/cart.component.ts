@@ -12,15 +12,17 @@ export class CartComponent {
   userId: number | null = null;
   total: number = 0;
   isLoggedIn: boolean = false;
+  storedUserId: string | null = '';
 
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     // ✅ Fetch userId from localStorage
-    const storedUserId = sessionStorage.getItem('uId');
+    this.storedUserId = sessionStorage.getItem('uId');
+    console.log('---------------------',this.storedUserId)
 
-    if (storedUserId) {
-      this.userId = parseInt(storedUserId, 10);
+    if (this.storedUserId) {
+      this.userId = parseInt(this.storedUserId, 10);
       this.isLoggedIn = true;
       this.loadCartItems();
     } else {

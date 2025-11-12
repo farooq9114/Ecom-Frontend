@@ -1,16 +1,17 @@
-<div class="container mt-4 text-center">
-  <h2 class="text-primary mb-4">✨ Perfume Collection ✨</h2>
 
-  <!-- Filters -->
-  <div class="row justify-content-center mb-4">
+
+<!-- Perfume Cards -->
+<div class="container-fluid mt-4" >
+   <!-- Filters -->
+  <div class="row justify-content-center mb-4 g-3 mt-5 mb-5">
     <!-- Gender Filter -->
-    <div class="col-md-3 mb-2">
+    <div  class="col-md-3 col-sm-6">
       <select
-        class="form-select"
+        class="form-select filter-select"
         [(ngModel)]="searchGender"
         (change)="filterPerfumes()"
       >
-        <option value="">All Genders</option>
+        <option value="">Choose by gender</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
         <option value="unisex">Unisex</option>
@@ -18,13 +19,13 @@
     </div>
 
     <!-- Price Range Filter -->
-    <div class="col-md-3 mb-2">
+    <div class="col-md-3 col-sm-6">
       <select
-        class="form-select"
+        class="form-select filter-select"
         [(ngModel)]="selectedPriceRange"
         (change)="filterPerfumes()"
       >
-        <option value="">All Prices</option>
+        <option value="">Price Range</option>
         <option value="200-500">₹200 - ₹500</option>
         <option value="500-1000">₹500 - ₹1000</option>
         <option value="1000-2000">₹1000 - ₹2000</option>
@@ -32,55 +33,50 @@
         <option value="5000-10000">₹5000 - ₹10000</option>
       </select>
     </div>
-
   </div>
-</div>
-
-  <!-- Perfume Cards -->
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-4 mb-4" *ngFor="let perfume of filteredPerfumes">
-        <div class="card h-100 shadow-sm d-flex flex-column">
-
-          <!-- Image -->
+  <div class="row justify-content-center">
+    <div
+      class="col-md-4 col-sm-6 mb-4"
+      *ngFor="let perfume of filteredPerfumes"
+    >
+      <div class="card perfume-card shadow-sm">
+        <div class="img-wrapper">
           <img
             [src]="perfume.imageUrl"
-            class="card-img-top"
             alt="{{ perfume.name }}"
-            style="height: 550px; object-fit: cover;"
+            class="card-img-top perfume-image"
           />
+        </div>
 
-          <!-- Card Body -->
-          <div class="card-body d-flex flex-column justify-content-between">
-            <div>
-              <h5 class="card-title">{{ perfume.name }}</h5>
-              <p class="card-text text-muted">{{ perfume.description }}</p>
-              <p class="card-text">
-                <strong>Gender:</strong> {{ perfume.gender | titlecase }}
-              </p>
-              <h6 class="text-success">
-                ₹{{ perfume.price | number: '1.2-2' }}
-              </h6>
+        <div class="card-body d-flex flex-column justify-content-between">
+          <div>
+            <h5 class="card-title perfume-name">{{ perfume.name }}</h5>
+            <p class="card-text text-muted small">{{ perfume.description }}</p>
+            <p class="card-text">
+              <strong>Gender:</strong> {{ perfume.gender | titlecase }}
+            </p>
+            <h6 class="price-text">
+              ₹{{ perfume.price | number: '1.2-2' }}
+            </h6>
 
-              <span
-                *ngIf="perfume.latestLaunch"
-                class="badge bg-warning text-dark"
-              >
-                New Launch 🌟
-              </span>
-            </div>
-
-            <!-- Button (always inside card-body bottom) -->
-            <div class="mt-3">
-              <button
-                id="btn"
-                class="btn btn-outline-primary w-20"
-                (click)="addToCart(perfume)"
-              >
-                Add to Cart
-              </button>
-            </div>
+            <span
+              *ngIf="perfume.latestLaunch"
+              class="badge bg-premium"
+              style="color:black"
+            >
+              🌟 New Launch
+            </span>
           </div>
+
+          <div class="mt-3">
+            <button
+              class="btn btn-royal w-20"
+              (click)="addToCart(perfume)"
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -1,77 +1,12 @@
-<!-- <div class="container mt-4">
-  <h2 class="mb-4 text-center">🛒 My Cart</h2>
+<div class="container mt-4 pt-5">
 
-  <div *ngIf="!isLoggedIn" class="alert alert-warning text-center">
-    You must <a routerLink="/login">login</a> to view your cart.
-  </div>
+<div *ngIf="cartItems == 0 && storedUserId!=null">
+  <h2 style="text-align: center;">Your Cart is empty 😢</h2>
+</div>
 
-  <div *ngIf="isLoggedIn">
-    <div *ngIf="cartItems.length === 0" class="text-center">
-      <p>Your cart is empty.</p>
-    </div>
-
-    <div class="row" *ngIf="cartItems.length > 0">
-      <div class="col-md-4 mb-4" *ngFor="let item of cartItems">
-        <div class="card h-100 shadow-sm">
-          <img [src]="item.imageUrl" class="card-img-top" alt="{{ item.name }}" style="height: 250px; object-fit: cover;">
-          <div class="card-body">
-            <h5 class="card-title">{{ item.name }}</h5>
-            <p class="card-text text-muted">{{ item.description }}</p>
-            <p><strong>Gender:</strong> {{ item.gender }}</p>
-            <p><strong>Price:</strong> ₹{{ item.price | number:'1.2-2' }}</p>
-          </div>
-          <div class="card-footer text-end">
-            <button class="btn btn-danger btn-sm" (click)="removeItem(item.cartId)">Remove</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="text-end mt-4" *ngIf="cartItems.length > 0">
-      <h4>Total: ₹{{ total | number:'1.2-2' }}</h4>
-      <button class="btn btn-success mt-2">Proceed to Checkout</button>
-    </div>
-  </div>
-</div> -->
-
-
-<!-- <div class="container mt-4">
-  <h2 class="mb-4 text-center">🛒 My Cart</h2>
-
-  <div *ngIf="!isLoggedIn" class="alert alert-warning text-center">
-    You must <a routerLink="/login">login</a> to view your cart.
-  </div>
-
-  <div *ngIf="isLoggedIn">
-    <div *ngIf="cartItems.length === 0" class="text-center">
-      <p>Your cart is empty.</p>
-    </div>
-
-    <div class="row" *ngIf="cartItems.length > 0">
-      <div class="col-md-4 mb-4" *ngFor="let item of cartItems">
-        <div class="card h-100 shadow-sm">
-          <img [src]="item.imageUrl" class="card-img-top" alt="{{ item.name }}" style="height: 250px; object-fit: cover;">
-          <div class="card-body">
-            <h5 class="card-title">{{ item.name }}</h5>
-            <p class="card-text text-muted">{{ item.description }}</p>
-            <p><strong>Gender:</strong> {{ item.gender }}</p>
-            <p><strong>Price:</strong> ₹{{ item.price | number:'1.2-2' }}</p>
-          </div>
-          <div class="card-footer text-end">
-            <button class="btn btn-danger btn-sm" (click)="removeItem(item.cartId)">Remove</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="text-end mt-4" *ngIf="cartItems.length > 0">
-      <h4>Total: ₹{{ total | number:'1.2-2' }}</h4>
-      <button class="btn btn-success mt-2">Proceed to Checkout</button>
-    </div>
-  </div>
-</div> -->
-
-<div class="container mt-5 pt-5">
+<div *ngIf="cartItems == 0 && storedUserId==null">
+  <h2 style="text-align: center;">You need to login/sin-up to add items in cart</h2>
+</div>
 
 <div class="row" *ngIf="cartItems.length > 0">
   <div class="col-md-4 mb-4" *ngFor="let item of cartItems">
