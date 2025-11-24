@@ -20,16 +20,32 @@ export class SignUpComponent {
   constructor(private userService: UserService, private router: Router) {}
 
   onSubmit() {
-    console.log('User before submit:', this.user);
+    // console.log('User before submit:', this.user);
     this.userService.registerUser(this.user).subscribe(
       (response) => {
-        alert('Signup successful!');
-        this.router.navigate(['/login']);
+        this.showToastMessage('Signup successful!');
+        // this.router.navigate(['/login']);
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 2500);
       },
       (error) => {
-        console.log(this.user)
+        // console.log(this.user)
         alert('Email already exists or server error!');
       });
+  }
+
+   showToast: boolean = false;
+  toastMessage: string = '';
+
+  // 🔥 Reusable Toast Function
+  showToastMessage(message: string) {
+    this.toastMessage = message;
+    this.showToast = true;
+
+    setTimeout(() => {
+      this.showToast = false;
+    }, 2500);
   }
 
 }

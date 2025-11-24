@@ -21,3 +21,20 @@ html, body {
   max-width: 100vw;
   object-fit: cover;
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1; /* pushes footer down */
+  display: flex;
+  flex-direction: column;
+}

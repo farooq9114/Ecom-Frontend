@@ -55,3 +55,51 @@ h3 {
   text-decoration: underline;
 }
 
+
+
+/* Center login card vertically on mobile in desktop-view mode */
+@media (max-width: 768px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  app-footer {
+    margin-top: auto;
+  }
+
+  /* Override container spacing for this mode */
+  .container {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 100vh;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+
+.custom-toast {
+  position: fixed;
+  bottom: 280px;
+  left: 50%;
+  transform: translateX(-50%) translateY(50px);
+  background: #333;
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 8px;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+  z-index: 9999;
+  font-size: 14px;
+}
+
+.custom-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+

@@ -1,39 +1,37 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../../Services/product.service';
-import { CartService } from '../../Services/cart.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-perfume',
+  selector: 'app-combos',
   standalone: false,
-  templateUrl: './perfume.component.html',
-  styleUrl: './perfume.component.css'
+  templateUrl: './combos.component.html',
+  styleUrl: './combos.component.css'
 })
-export class PerfumeComponent {
-
-    constructor(
-      private productService: ProductService,
-      private router: Router
+export class CombosComponent {
+    constructor(private productService: ProductService,
+        private router: Router
     ){}
 
     selectedPriceRange: string = '';
     searchText: string = '';
 
     perfumes: any[] = []
-    ngOnInit(): void {
-        this.productService.getProducts().subscribe((data) => {
-            this.perfumes = data;
-            this.filteredPerfumes = data;
-            // console.log('Products received:', this.perfumes);
-        });
-    }
-
     filteredPerfumes: any[] = [];
     searchGender: string = '';
 
+    ngOnInit(): void {
+        this.productService.getComboPerfume().subscribe((data) => {
+            this.perfumes = data;
+            this.filteredPerfumes = data;
+            console.log('Combo Products received:', this.perfumes);
+        });
+    }
+
+
     viewPerfumeDetails(id: number) {
-        // console.log('id----------', id)
-        this.router.navigate(['/perfume', id]);
+        console.log('Touched id-',id)
+        this.router.navigate(['/combos', id]);
     }
 
     filterPerfumes(): void {
@@ -41,6 +39,7 @@ export class PerfumeComponent {
 
         // Search filter
         if (this.searchText.trim() !== '') {
+            console.log('Searching for - ', this.searchText)
             const text = this.searchText.toLowerCase();
             filtered = filtered.filter((p) =>
               p.name.toLowerCase().includes(text) ||
@@ -48,15 +47,17 @@ export class PerfumeComponent {
             );
         }
 
-        // Gender / Category Filter
+        // 🧍 Gender / Category Filter
         if (this.searchGender) {
+
             if (this.searchGender === "NewLaunch") {
-                // ⭐ Show only latest launch
-                    filtered = filtered.filter((p) => p.latestLaunch === true);
+              // ⭐ Show only latest launch
+                filtered = filtered.filter((p) => p.latestLaunch === true);
             } else {
                 // Normal gender filtering
                 filtered = filtered.filter(
-                (p) => p.gender.toLowerCase() === this.searchGender.toLowerCase());
+                  (p) => p.gender.toLowerCase() === this.searchGender.toLowerCase()
+                );
             }
         }
 
@@ -65,6 +66,7 @@ export class PerfumeComponent {
             const [min, max] = this.selectedPriceRange.split('-').map(Number);
             filtered = filtered.filter((p) => p.price >= min && p.price <= max);
         }
+
         this.filteredPerfumes = filtered;
     }
 }

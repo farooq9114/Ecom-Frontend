@@ -45,6 +45,14 @@
   .navbar-nav .nav-item {
     margin: 5px 0;
   }
+
+  .navbar-nav.ms-lg-auto {
+  margin-left: auto !important;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
 }
 
 
@@ -124,4 +132,57 @@
 @keyframes fadeInBg {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+
+.navbar .nav-link {
+  color: #2c2c2c !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.navbar .nav-link.active,
+.navbar .nav-link:hover {
+  color: #d4af37 !important; /* champagne gold */
+  border-bottom: 2px solid #d4af37;
+}
+
+.btn-gradient {
+  background: linear-gradient(90deg, #e5e5e5, #cfaeba);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  color:black !important;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(90deg, #a9a1aa, #82797c);
+  color: black !important;
+  box-shadow: 0 4px 10px rgba(233, 30, 99, 0.3);
+}
+
+.navbar-nav.ms-auto {
+  margin-left: auto !important;
+}
+
+
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.custom-toast {
+  background: #333;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 8px;
+  animation: fadeInOut 2.5s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(20px); }
+  10% { opacity: 1; transform: translateY(0px); }
+  90% { opacity: 1; transform: translateY(0px); }
+  100% { opacity: 0; transform: translateY(20px); }
 }

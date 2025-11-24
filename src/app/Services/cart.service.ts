@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
 
 export interface Cart {
   cartId: number;
@@ -11,6 +11,7 @@ export interface Cart {
   gender: string;
   price: number;
   imageUrl: string;
+  quantity: number;
 }
 
 @Injectable({
@@ -18,24 +19,70 @@ export interface Cart {
 })
 export class CartService {
 
-  private baseUrl = 'http://192.168.1.17:8080/cart'; // ✅ backend base URL
+    private baseUrl = 'http://192.168.1.32:8080/cart';
+    cartCount = new BehaviorSubject<number>(0);
+    // cartUpdated$ = new Subject<void>();
 
-  constructor(private http: HttpClient) {}
+    public cartUpdatedSource = new Subject<void>();   // <-- make it public
+    cartUpdated$ = this.cartUpdatedSource.asObservable();
 
-  getCartByUserId(userId: number): Observable<Cart[]> {
-    return this.http.get<Cart[]>(`${this.baseUrl}/getProdsByUserid/${userId}`);
+
+    // ✅ BehaviorSubject with safe sessionStorage check
+  private initialCount = (() => {
+    if (typeof window !== 'undefined') {
+      return Number(sessionStorage.getItem('cartCount')) || 0;
+    }
+    return 0; // SSR fallback
+  })();
+
+    private cartCountSubject = new BehaviorSubject<number>(this.initialCount);
+    cartCount$ = this.cartCountSubject.asObservable();
+
+    constructor(private http: HttpClient) {}
+
+    clearCart(uid: number): Observable<string> {
+        return this.http.delete(`${this.baseUrl}/clear/${uid}`, {
+          responseType: 'text',
+        });
+    }
+
+    getCartByUserId(userId: number): Observable<Cart[]> {
+        console.log('From cart service---', (`${this.baseUrl}/getProdsByUserid/${userId}`))
+        return this.http.get<Cart[]>(`${this.baseUrl}/getProdsByUserid/${userId}`);
+    }
+
+    addToCart(cartItem: any): Observable<any> {
+        return this.http.post(`${this.baseUrl}/addToCart`, cartItem).pipe(
+            tap(() => this.cartUpdatedSource.next())
+        );
+    }
+
+    updateCartItem(cartId: number, updatedItem: any): Observable<any> {
+        return this.http.put(`${this.baseUrl}/${cartId}`, updatedItem).pipe(
+            tap(() => this.cartUpdatedSource.next())
+        );
+    }
+
+    deleteCartItem(cartId: number): Observable<any> {
+        return this.http.delete(`${this.baseUrl}/deletePerfumeByCartid/${cartId}`).pipe(
+            tap(() => this.cartUpdatedSource.next())
+        );
+    }
+
+    // Call this when item added
+    updateCartCount(count: number) {
+        this.cartCount.next(count);
+    }
+
+    setCartCount(count: number) {
+    this.cartCountSubject.next(count);
+
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('cartCount', String(count));
+    }
+  }
+    resetCartCount() {
+        this.setCartCount(0);
   }
 
-  addToCart(cartItem: any): Observable<any> {
-        console.log("cartItem: ", cartItem)
-    return this.http.post(`${this.baseUrl}/addToCart`, cartItem);
-  }
-
-  updateCartItem(cartId: number, updatedItem: any) {
-    return this.http.put(`${this.baseUrl}/${cartId}`, updatedItem);
-  }
-
-   deleteCartItem(cartId: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/deletePerfumeByCartid/${cartId}`);
-  }
 }

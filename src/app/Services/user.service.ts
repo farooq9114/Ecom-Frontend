@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-    private baseUrl = 'http://192.168.1.17:8080/user';
+    private baseUrl = 'http://192.168.1.32:8080/user';
 
     constructor(private http: HttpClient) {}
 

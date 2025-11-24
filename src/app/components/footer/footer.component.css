@@ -2,7 +2,7 @@
 .footer {
   background: linear-gradient(180deg, #3f3e3e, #1e1d1d);
   color: #e6e6e6;
-  padding: 60px 20px 30px;
+  padding: 60px 20px 10px;
   font-family: 'Playfair Display', serif;
   border-top: 1px solid rgba(212, 175, 55, 0.2);
 }
@@ -107,4 +107,47 @@
 .footer .brand-logo:hover {
   transform: scale(1.05);
   opacity: 1;
+}
+
+/* ============================
+   📱 MOBILE FOOTER FIX
+============================ */
+@media (max-width: 600px) {
+
+  .footer {
+    padding: 25px 15px 8px !important; /* reduce top/bottom padding */
+  }
+
+  .footer-container {
+    gap: 12px !important; /* reduce spacing between sections */
+  }
+
+  .footer-section {
+    text-align: center; /* center content for mobile */
+  }
+
+  .footer .brand-logo {
+    height: 60px !important; /* reduce logo size */
+    margin-bottom: 6px !important;
+  }
+
+  .tagline {
+    font-size: 13px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .footer-section h4 {
+    margin-bottom: 8px !important;
+  }
+
+  .footer-section p,
+  .footer-section a {
+    font-size: 13px !important;
+  }
+
+  .footer-bottom {
+    margin-top: 20px !important;
+    padding-top: 10px !important;
+    font-size: 12px !important;
+  }
 }

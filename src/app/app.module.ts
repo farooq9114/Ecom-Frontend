@@ -12,6 +12,9 @@ import { CartComponent } from './components/cart/cart.component';
 import { SearchFilterComponent } from './components/search-filter/search-filter.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PerfumeDetailsComponent } from './components/perfume-details/perfume-details.component';
+import { CombosComponent } from './components/combos/combos.component';
+import { CombosDetailComponent } from './components/combos-detail/combos-detail.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CartComponent,
     SearchFilterComponent,
     FooterComponent,
+    PerfumeDetailsComponent,
+    CombosComponent,
+    CombosDetailComponent,
   ],
   imports: [
     BrowserModule,

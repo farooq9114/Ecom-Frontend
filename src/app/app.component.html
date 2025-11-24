@@ -1,5 +1,5 @@
 <nav
-  class="navbar navbar-expand-lg navbar-light fixed-top"
+  class="navbar navbar-expand-md navbar-light fixed-top"
   style="
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
@@ -32,35 +32,44 @@
       <!-- Center Nav Items -->
       <ul class="navbar-nav mx-auto text-center">
         <li style="margin-right: 15px;" class="nav-item">
-          <a class="nav-link" routerLink="/home" routerLinkActive="active"><strong>Home</strong></a>
+            <a class="nav-link" routerLink="/home" routerLinkActive="active" (click)="closeNavbar()"><strong>Home</strong></a>
         </li>
+
         <li style="margin-right: 10px;" class="nav-item">
-          <a class="nav-link" routerLink="/perfumes" routerLinkActive="active"><strong>Perfumes</strong></a>
+          <a class="nav-link" routerLink="/perfumes" routerLinkActive="active" (click)="closeNavbar()"><strong>Perfumes</strong></a>
         </li>
-        <li style="margin-right: 15px;" class="nav-item mx-2">
-          <a
-            class="nav-link nav-hover d-flex align-items-center justify-content-center fw-semibold text-gradient-hover"
-            routerLink="/search"
-            routerLinkActive="active"
-          >
-            <i class="bi bi-search me-1"></i><strong>Search</strong> 
-          </a>
+
+        <li style="margin-right: 10px;" class="nav-item">
+          <a class="nav-link" routerLink="/combos" routerLinkActive="active" (click)="closeNavbar()"><strong>Combos</strong></a>
         </li>
-        <li style="margin-right:15px;" class="nav-item">
-          <a class="nav-link" routerLink="/cart" routerLinkActive="active"><strong>Cart</strong></a>
+
+        <li class="nav-item position-relative me-3">
+            <a class="nav-link" routerLink="/cart" routerLinkActive="active" (click)="closeNavbar()">
+                <i class="bi bi-cart3 fs-5"></i>
+                <span class="ms-1 fw-semibold"></span>
+
+                <!-- 🔴 Badge showing number of items -->
+                <span
+                  *ngIf="cartCount > 0"
+                  class="position-absolute top-0 translate-middle badge rounded-pill bg-danger">
+                  {{ cartCount }}
+                </span>
+            </a>
         </li>
+
       </ul>
 
       <!-- Right Side Buttons -->
 <ul class="navbar-nav ms-lg-auto text-center">
-  <li *ngIf="username" class="nav-item mx-2">
+  <!-- <li *ngIf="username" class="nav-item mx-2">
     <strong><i class="bi bi-person-circle me-1"></i>{{ username }}</strong>
-  </li>
+  </li> -->
 
   <li *ngIf="!username" class="nav-item ms-3">
           <a
             class="btn btn-outline-gradient fw-semibold px-4 rounded-pill hover-btn-outline"
             routerLink="/sign-up"
+            (click)="closeNavbar()"
           >
             <i class="bi bi-person-plus me-1"></i> Signup
           </a>
@@ -70,6 +79,7 @@
           <a
             class="btn btn-gradient fw-semibold px-4 rounded-pill hover-btn"
             routerLink="/login"
+            (click)="closeNavbar()"
           >
             <i class="bi bi-box-arrow-in-right me-1"></i> Login
           </a>
@@ -80,7 +90,7 @@
   <button
     *ngIf="!confirmLogoutBtn"
     class="btn btn-outline-danger fw-semibold px-4 rounded-pill hover-btn-outline"
-    (click)="confirmLogout()"
+    (click)="confirmLogout(); closeNavbar()"
   >
     <i class="bi bi-box-arrow-right me-1"></i> Logout
   </button>
@@ -110,8 +120,15 @@
   </div>
 </div>
 
-<div [@routeAnimations]="prepareRoute(outlet)">
-  <router-outlet #outlet="outlet"></router-outlet>
+<div class="layout">
+  <div class="content">
+    <div [@routeAnimations]="prepareRoute(outlet)">
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
 </div>
 
-<app-footer></app-footer>
+
+

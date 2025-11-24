@@ -1,80 +1,87 @@
+<!-- Perfume Cards -->
+<div class="container mt-4">
+  <!-- Filters -->
+  <div class="row justify-content-center mb-4 g-3 mt-5 mb-5 filter-bar">
 
+  <!-- Search Filter -->
+  <div class="col-md-3 col-sm-6 position-relative">
+      <input
+          type="text"
+          class="form-control filter-input"
+          placeholder="Search perfume..."
+          [(ngModel)]="searchText"
+          (input)="filterPerfumes()"
+      />
+  </div>
+
+  <!-- Gender Filter -->
+  <div class="col-md-3 col-sm-6 position-relative">
+    <select
+      class="form-select filter-select"
+      [(ngModel)]="searchGender"
+      (change)="filterPerfumes()"
+    >
+      <option value="">Category</option>
+      <option value="Men">Men</option>
+      <option value="Women">Women</option>
+      <option value="unisex">Unisex</option>
+      <option value="NewLaunch">New Launch</option>
+    </select>
+  </div>
+
+  <!-- Price Range Filter -->
+  <div class="col-md-3 col-sm-6 position-relative">
+    <select
+      class="form-select filter-select"
+      [(ngModel)]="selectedPriceRange"
+      (change)="filterPerfumes()"
+    >
+      <option value="">Sort By</option>
+      <option value="200-500">₹200 - ₹500</option>
+      <option value="500-1000">₹500 - ₹1000</option>
+      <option value="1000-2000">₹1000 - ₹2000</option>
+      <option value="2000-5000">₹2000 - ₹5000</option>
+      <option value="5000-10000">₹5000 - ₹10000</option>
+    </select>
+  </div>
+
+</div>
+</div>
 
 <!-- Perfume Cards -->
-<div class="container-fluid mt-4" >
-   <!-- Filters -->
-  <div class="row justify-content-center mb-4 g-3 mt-5 mb-5">
-    <!-- Gender Filter -->
-    <div  class="col-md-3 col-sm-6">
-      <select
-        class="form-select filter-select"
-        [(ngModel)]="searchGender"
-        (change)="filterPerfumes()"
-      >
-        <option value="">Choose by gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="unisex">Unisex</option>
-      </select>
-    </div>
-
-    <!-- Price Range Filter -->
-    <div class="col-md-3 col-sm-6">
-      <select
-        class="form-select filter-select"
-        [(ngModel)]="selectedPriceRange"
-        (change)="filterPerfumes()"
-      >
-        <option value="">Price Range</option>
-        <option value="200-500">₹200 - ₹500</option>
-        <option value="500-1000">₹500 - ₹1000</option>
-        <option value="1000-2000">₹1000 - ₹2000</option>
-        <option value="2000-5000">₹2000 - ₹5000</option>
-        <option value="5000-10000">₹5000 - ₹10000</option>
-      </select>
-    </div>
-  </div>
+<div class="container">
   <div class="row justify-content-center">
     <div
-      class="col-md-4 col-sm-6 mb-4"
+      class="col-md-4 col-sm-6 mb-5"
       *ngFor="let perfume of filteredPerfumes"
+      (click)="viewPerfumeDetails(perfume.id)"
+      style="cursor: pointer; "
     >
       <div class="card perfume-card shadow-sm">
         <div class="img-wrapper">
           <img
-            [src]="perfume.imageUrl"
-            alt="{{ perfume.name }}"
+            [src]="perfume?.imageUrl"
+            alt="{{ perfume?.name }}"
             class="card-img-top perfume-image"
           />
         </div>
 
         <div class="card-body d-flex flex-column justify-content-between">
           <div>
-            <h5 class="card-title perfume-name">{{ perfume.name }}</h5>
-            <p class="card-text text-muted small">{{ perfume.description }}</p>
+            <h5 class="card-title perfume-name">{{ perfume?.name }}</h5>
+            <!-- <p class="card-text text-muted small">{{ perfume?.description }}</p> -->
             <p class="card-text">
-              <strong>Gender:</strong> {{ perfume.gender | titlecase }}
+              <strong></strong> {{ perfume.gender | titlecase }}
             </p>
-            <h6 class="price-text">
-              ₹{{ perfume.price | number: '1.2-2' }}
-            </h6>
+            <h6 class="price-text">₹{{ perfume.price | number: '1.2-2' }}</h6>
 
             <span
               *ngIf="perfume.latestLaunch"
               class="badge bg-premium"
-              style="color:black"
+              style="color: black"
             >
               🌟 New Launch
             </span>
-          </div>
-
-          <div class="mt-3">
-            <button
-              class="btn btn-royal w-20"
-              (click)="addToCart(perfume)"
-            >
-              Add to Cart
-            </button>
           </div>
         </div>
       </div>

@@ -1,18 +1,224 @@
-.carousel-item img {
+/* 🌅 Hero Carousel */
+.carousel-img {
+  height: 600px;
   object-fit: cover;
-  border-radius: 12px;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  display: block;
+  filter: brightness(0.72) contrast(1.05);
+  transition: transform 1.5s ease, filter 1s ease;
 }
 
-.carousel-indicators button {
-  background-color: var(--coffee);
+.carousel-item.active .carousel-img {
+  transform: scale(1.02);
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  filter: invert(80%);
+.brand-logo{
+  width: 200px;
 }
 
+@media (max-width: 768px) {
+  .carousel-img {
+    height: 350px;
+  }
+}
+
+
+/* Perfume Card Container */
+.perfume-card {
+  transition: transform 0.4s ease, filter 0.4s ease;
+  text-align: center;
+}
+
+/* Lift on hover (desktop only) */
+@media (min-width: 768px) {
+  .perfume-card:hover {
+    transform: translateY(-10px);
+    filter: brightness(1.1);
+  }
+}
+
+/* Image container */
+.perfume-img {
+  width: 250px;
+  height: 250px;
+  transition: transform 0.5s ease, box-shadow 0.4s ease;
+}
+
+.perfume-img img {
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* Hover Zoom (desktop only) */
+@media (min-width: 768px) {
+  .perfume-card:hover .perfume-img img {
+    transform: scale(1.15);
+  }
+
+  .perfume-card:hover .perfume-img {
+    box-shadow: 0 0 25px rgba(255, 150, 150, 0.5);
+  }
+}
+
+/* MOBILE RESPONSIVE FIX */
+@media (max-width: 576px) {
+  .perfume-img {
+    width: 160px !important;
+    height: 160px !important;
+  }
+
+  .perfume-card h5 {
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+
+  .perfume-card p {
+    font-size: 0.8rem;
+  }
+
+  .row.g-4 {
+    gap: 1rem !important;
+  }
+}
+
+/* Fade-in Entrance Animation */
+.perfume-card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.9s ease forwards;
+}
+
+/* Stagger effect */
+.perfume-card:nth-child(1) { animation-delay: 0.2s; }
+.perfume-card:nth-child(2) { animation-delay: 0.4s; }
+.perfume-card:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Elegant fade + slide animation */
+@keyframes couponFadeSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* coupon container */
+.coupon-banner-classic{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  background: linear-gradient(135deg,#f5f5f5, #e8e8e8);
+  color:#0c0c0c;
+  padding:14px 18px;
+  margin:20px 0;
+  font-size:15px;
+  font-weight:500;
+  border:1px solid #fffbfb;
+  box-shadow:0 6px 18px rgba(0,0,0,0.35);
+  flex-wrap:wrap;
+}
+
+/* left group */
+.coupon-left{ display:flex; align-items:center; gap:8px; }
+
+/* code style */
+.coupon-code{ font-family: monospace; letter-spacing:0.6px; padding:2px 6px; border-radius:4px; background:rgba(0, 0, 0, 0.03); }
+
+/* action */
+.coupon-action{ display:flex; align-items:center; }
+
+.copy-icon-btn {
+  background: transparent;
+  border: none;
+  color: #000000; /* adjust based on your coupon banner color */
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: transform 0.18s ease;
+}
+
+.copy-icon-btn:hover {
+  transform: scale(1.15);
+}
+
+.copy-icon-btn:active {
+  transform: scale(0.95);
+}
+
+/* icons */
+.icon {
+  font-size: 20px;
+  display: inline-block;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.tick-icon {
+  color: #13b55b;
+  font-weight: 700;
+}
+
+/* helper */
+.hidden {
+  display: none !important;
+}
+
+/* Show the break only on mobile */
+/* MOBILE VIEW FIX */
+@media (max-width: 600px) {
+
+  .coupon-banner-classic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 4px;
+  }
+
+  .coupon-line {
+    white-space: nowrap;     /* keep each line clean */
+  }
+
+  .line-1 {
+    font-size: 12px;
+  }
+
+  .line-2 {
+    font-size: 12px;
+    opacity: 0.9;
+  }
+
+  .copy-icon-btn {
+    margin-left: 5px;
+    min-width: 32px !important;
+    min-height: 32px !important;
+  }
+
+  .icon {
+    font-size: 16px !important;
+  }
+}
+
+/* DESKTOP: keep default single-line layout */
+@media (min-width: 601px) {
+  .coupon-banner-classic {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+/* small fade/slide */
+@keyframes couponFadeSlide{ from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:none;} }
+.coupon-banner-classic{ animation: couponFadeSlide 0.8s ease-out; }

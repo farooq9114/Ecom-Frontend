@@ -7,12 +7,18 @@ import { Observable } from 'rxjs';
 })
 export class ProductService {
 
-    private baseUrl = 'http://192.168.1.17:8080/perfume';
+    private baseUrl = 'http://192.168.1.32:8080/';
+
 
     constructor(private http: HttpClient) {}
 
     getProducts(): Observable<any[]> {
-       return this.http.get<any[]>(`${this.baseUrl}/getAll`);
+       return this.http.get<any[]>(`${this.baseUrl}perfume/getAll`);
     }
+
+    getComboPerfume(): Observable<any[]> {
+       return this.http.get<any[]>(`${this.baseUrl}combos/getAllCombos`);
+    }
+
 
 }

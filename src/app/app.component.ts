@@ -1,66 +1,122 @@
-import { Component } from '@angular/core';
-import { ProductService } from './Services/product.service';
-import { NavigationEnd,Router, RouterOutlet } from '@angular/router';
+import { Component, AfterViewInit } from '@angular/core';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { fader } from './route-animations';
+import { CartService } from './Services/cart.service';
+import { Subscription } from 'rxjs';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    standalone: false,
-    styleUrl: './app.component.css',
-    animations: [fader]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
+  standalone: false,
+  animations: [fader]
 })
+export class AppComponent implements AfterViewInit {
 
-export class AppComponent {
-    title = 'perfumeCollection';
+  title = 'perfumeCollection';
 
-    username: string | null = null;
+  username: string | null = null;
+  confirmLogoutBtn = false;
 
-    confirmLogoutBtn = false
+  cartCount = 0;
+  private subscription: Subscription = new Subscription();
 
-    name: string =''
+  constructor(private router: Router, private cartService: CartService) {}
 
-     prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
-  }
-  constructor(private router: Router) {}
+  // ---------------------------------
+  // 🔥 FIX: Animation hydration error
+  // ---------------------------------
+  ngAfterViewInit(): void {
+    // Delay to avoid ExpressionChangedAfterItHasBeenCheckedError
+    setTimeout(() => {
+      this.safeUpdateUsername();
+      this.safeLoadCartCount();
+    }, 0);
 
-  ngOnInit(): void {
-    this.updateUsername();
+    // Update on cart change
+    this.subscription = this.cartService.cartUpdated$.subscribe(() => {
+      this.safeLoadCartCount();
+    });
 
-    // Update username whenever route changes
+    // Update username on navigation change
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.updateUsername();
+        this.safeUpdateUsername();
       }
     });
   }
 
-  // ✅ Read username from sessionStorage
-  updateUsername(): void {
-    if (typeof window !== 'undefined') {
-      console.log('updateUsername function')
-      let name= sessionStorage.getItem('name');
-      this.username  = name
-      console.log(this.username, 'logged in')
+  // --------------------------------------------------
+  // 🔥 FIX: SSR-safe username load
+  // --------------------------------------------------
+  safeUpdateUsername(): void {
+    if (typeof window === 'undefined') return;
+
+    const name = window.sessionStorage.getItem('name');
+    this.username = name;
+  }
+
+  // --------------------------------------------------
+  // 🔥 FIX: SSR-safe cart count load
+  // --------------------------------------------------
+  safeLoadCartCount(): void {
+    if (typeof window === 'undefined') {
+      this.cartCount = 0;
+      return;
+    }
+
+    const userIdStr = window.sessionStorage.getItem('uId');
+    const userId = userIdStr ? parseInt(userIdStr, 10) : null;
+
+    if (userId) {
+      this.cartService.getCartByUserId(userId).subscribe({
+        next: (items) => (this.cartCount = items.length),
+        error: () => (this.cartCount = 0),
+      });
+    } else {
+      this.cartCount = 0;
     }
   }
 
+  // --------------------------------------------------
+  // Logout
+  // --------------------------------------------------
   confirmLogout(): void {
     this.confirmLogoutBtn = true;
   }
+
   cancelLogout(): void {
     this.confirmLogoutBtn = false;
   }
 
-  // ✅ Logout function
   logout(): void {
     if (typeof window !== 'undefined') {
-      sessionStorage.removeItem('name');
-      sessionStorage.removeItem('uId');
+      window.sessionStorage.removeItem('name');
+      window.sessionStorage.removeItem('uId');
+      this.cartCount = 0;
       this.username = null;
       this.confirmLogoutBtn = false;
-      this.router.navigate(['/login']); // redirect to login page
+      this.router.navigate(['/login']);
     }
   }
+
+  // --------------------------------------------------
+  // Navbar collapse for mobile
+  // --------------------------------------------------
+  closeNavbar() {
+    if (typeof window !== 'undefined') {
+      const navbar = document.getElementById('navbarNav');
+      if (navbar?.classList.contains('show')) {
+        navbar.classList.remove('show');
+      }
+    }
+  }
+
+  // --------------------------------------------------
+  // Route animation binder
+  // --------------------------------------------------
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet?.activatedRouteData?.['animation'];
+  }
+
 }
