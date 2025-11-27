@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ProductService } from '../../Services/product.service';
 import { CartService } from '../../Services/cart.service';
 import { Router } from '@angular/router';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-perfume',
@@ -13,20 +15,31 @@ export class PerfumeComponent {
 
     constructor(
       private productService: ProductService,
-      private router: Router
+      private router: Router,
+      @Inject(PLATFORM_ID) private platformId: Object
     ){}
 
     selectedPriceRange: string = '';
     searchText: string = '';
 
     perfumes: any[] = []
+    // ngOnInit(): void {
+    //     this.productService.getProducts().subscribe((data) => {
+    //         this.perfumes = data;
+    //         this.filteredPerfumes = data;
+    //         // console.log('Products received:', this.perfumes);
+    //     });
+    // }
+
     ngOnInit(): void {
-        this.productService.getProducts().subscribe((data) => {
-            this.perfumes = data;
-            this.filteredPerfumes = data;
-            // console.log('Products received:', this.perfumes);
-        });
-    }
+  if (isPlatformBrowser(this.platformId)) {
+    this.productService.getProducts().subscribe((data) => {
+      this.perfumes = data;
+      this.filteredPerfumes = data;
+    });
+  }
+}
+
 
     filteredPerfumes: any[] = [];
     searchGender: string = '';

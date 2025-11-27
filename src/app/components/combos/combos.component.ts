@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../../Services/product.service';
 import { Router } from '@angular/router';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-combos',
@@ -10,7 +12,8 @@ import { Router } from '@angular/router';
 })
 export class CombosComponent {
     constructor(private productService: ProductService,
-        private router: Router
+        private router: Router,
+      @Inject(PLATFORM_ID) private platformId: Object
     ){}
 
     selectedPriceRange: string = '';
@@ -20,13 +23,21 @@ export class CombosComponent {
     filteredPerfumes: any[] = [];
     searchGender: string = '';
 
+    // ngOnInit(): void {
+    //     this.productService.getComboPerfume().subscribe((data) => {
+    //         this.perfumes = data;
+    //         this.filteredPerfumes = data;
+    //         // console.log('Combo Products received:', this.perfumes);
+    //     });
+    // }
     ngOnInit(): void {
-        this.productService.getComboPerfume().subscribe((data) => {
-            this.perfumes = data;
-            this.filteredPerfumes = data;
-            // console.log('Combo Products received:', this.perfumes);
-        });
-    }
+  if (isPlatformBrowser(this.platformId)) {
+    this.productService.getComboPerfume().subscribe((data) => {
+      this.perfumes = data;
+      this.filteredPerfumes = data;
+    });
+  }
+}
 
 
     viewPerfumeDetails(id: number) {
