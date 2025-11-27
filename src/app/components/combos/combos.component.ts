@@ -24,13 +24,13 @@ export class CombosComponent {
         this.productService.getComboPerfume().subscribe((data) => {
             this.perfumes = data;
             this.filteredPerfumes = data;
-            console.log('Combo Products received:', this.perfumes);
+            // console.log('Combo Products received:', this.perfumes);
         });
     }
 
 
     viewPerfumeDetails(id: number) {
-        console.log('Touched id-',id)
+        // console.log('Touched id-',id)
         this.router.navigate(['/combos', id]);
     }
 
@@ -39,7 +39,7 @@ export class CombosComponent {
 
         // Search filter
         if (this.searchText.trim() !== '') {
-            console.log('Searching for - ', this.searchText)
+            // console.log('Searching for - ', this.searchText)
             const text = this.searchText.toLowerCase();
             filtered = filtered.filter((p) =>
               p.name.toLowerCase().includes(text) ||

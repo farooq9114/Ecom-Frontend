@@ -108,11 +108,11 @@ body {
   position: fixed;
   bottom: 580px;
   left: 50%;
-  transform: translateX(-50%); /* REMOVE Y-translate */
+  transform: translateX(-50%);
   z-index: 99999;
   opacity: 0;
   visibility: hidden;
-  pointer-events: none;   /* ← KEY FIX */
+  pointer-events: none;
   transition: opacity 0.35s ease, visibility 0.35s ease;
 }
 
@@ -147,3 +147,22 @@ body {
   100% { transform: scale(0.9); opacity: 0; }
 }
 
+/* Detect Desktop Mode in mobile phones */
+@media (max-device-width: 768px) and (min-width: 768px) {
+  .cart-toast {
+    top: 70px !important;
+    bottom: auto !important;
+  }
+
+  .cart-toast-box {
+    font-size: 23px !important;  /* increase actual text */
+    padding: 18px 28px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .cart-toast-box {
+    font-size: 14px !important;  /* increase actual text */
+    padding: 18px 12px !important;
+  }
+}

@@ -19,7 +19,7 @@ export interface Cart {
 })
 export class CartService {
 
-    private baseUrl = 'http://192.168.1.32:8080/cart';
+    private baseUrl = 'https://backend-zixw.onrender.com/cart';
     cartCount = new BehaviorSubject<number>(0);
     // cartUpdated$ = new Subject<void>();
 
@@ -47,7 +47,6 @@ export class CartService {
     }
 
     getCartByUserId(userId: number): Observable<Cart[]> {
-        console.log('From cart service---', (`${this.baseUrl}/getProdsByUserid/${userId}`))
         return this.http.get<Cart[]>(`${this.baseUrl}/getProdsByUserid/${userId}`);
     }
 

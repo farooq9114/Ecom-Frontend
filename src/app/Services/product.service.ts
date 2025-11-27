@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ProductService {
 
-    private baseUrl = 'http://192.168.1.32:8080/';
+    private baseUrl = 'https://backend-zixw.onrender.com/';
 
 
     constructor(private http: HttpClient) {}

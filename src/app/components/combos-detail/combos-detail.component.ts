@@ -45,11 +45,9 @@ export class CombosDetailComponent {
         if (!id) return;
         this.productService.getComboPerfume().subscribe((data) => {
             this.perfume = data.find((p: any) => p.id === id);
-            console.log('loaded perfumes- ',this.perfume)
             this.relatedPerfumes = data
               .filter((p: any) => p.gender === this.perfume.gender && p.id !== id)
               .slice(0, 4);
-              console.log('related perfumes - ', this.relatedPerfumes)
             // 🎲 Generate random rating between 3 and 5
             this.rating = Math.floor(Math.random() * 3) + 3;
         });
@@ -74,7 +72,6 @@ export class CombosDetailComponent {
                 const existingItem = cartItems.find(
                     (item) => item.pId === perfume.id && item.producttype === 'combo'
                 );
-                console.log('existingItem ---------- ',existingItem)
                 if (existingItem) {
                     this.showSuccessToast(`${perfume.name} is already in your cart`);
                     return;
@@ -92,11 +89,9 @@ export class CombosDetailComponent {
                   };
                   this.cartService.addToCart(cartItem).subscribe({
                     next: () => {
-                        console.log('Added to cart'),
                         this.showSuccessToast(`${perfume.name} added to cart successfully`);
                     },
                     error: (err) => {
-                      console.error('Error adding to cart:', err);
                       this.showSuccessToast('Failed to add to cart');
                     }});
                 }

@@ -147,30 +147,6 @@ export class CartComponent {
         });
     }
 
-    //Delete all items from tbe cart
-    // clearCart() {
-    //     if (!this.userId) {
-    //       this.showSuccessToast('⚠️ Please log in to clear the cart.');
-    //       return;
-    //     }
-
-    //     if (confirm('Are you sure you want to clear the entire cart?')) {
-    //         this.cartService.clearCart(this.userId).subscribe({
-    //             next: () => {
-    //                 this.cartItems = [];
-    //                 this.total = 0;
-    //                 this.showSuccessToast('🗑️ Cart cleared successfully!');
-
-    //                 // 🔥 Update the cart number immediately everywhere
-    //                 this.cartService.setCartCount(0);
-    //                 this.cartService.cartUpdatedSource.next(); // Notify listeners
-    //             },
-    //         error: (err) => {
-    //             // console.error('Error clearing cart:', err);
-    //             alert('❌ Failed to clear cart!');
-    //         }});
-    //     }
-    // }
 
      // 🔥 **Trigger from modal**
   confirmClearCart() {

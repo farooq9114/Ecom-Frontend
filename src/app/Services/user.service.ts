@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-    private baseUrl = 'http://192.168.1.32:8080/user';
+    private baseUrl = 'https://backend-zixw.onrender.com/user';
 
     constructor(private http: HttpClient) {}
 
@@ -16,7 +16,6 @@ export class UserService {
   }
 
   loginUser(credentials: any): Observable<any> {
-    console.log('From service layer: ', credentials)
     return this.http.post(`${this.baseUrl}/login`, credentials);
   }
 
