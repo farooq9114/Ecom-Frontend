@@ -23,21 +23,14 @@ export class CombosComponent {
     filteredPerfumes: any[] = [];
     searchGender: string = '';
 
-    // ngOnInit(): void {
-    //     this.productService.getComboPerfume().subscribe((data) => {
-    //         this.perfumes = data;
-    //         this.filteredPerfumes = data;
-    //         // console.log('Combo Products received:', this.perfumes);
-    //     });
-    // }
     ngOnInit(): void {
-  if (isPlatformBrowser(this.platformId)) {
-    this.productService.getComboPerfume().subscribe((data) => {
-      this.perfumes = data;
-      this.filteredPerfumes = data;
-    });
-  }
-}
+        if (isPlatformBrowser(this.platformId)) {
+          this.productService.getComboPerfume().subscribe((data) => {
+            this.perfumes = data;
+            this.filteredPerfumes = data;
+          });
+        }
+    }
 
 
     viewPerfumeDetails(id: number) {
