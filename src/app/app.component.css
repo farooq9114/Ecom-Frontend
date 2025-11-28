@@ -37,7 +37,7 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 690px) {
   .navbar-nav {
     text-align: center;
     width: 100%;
