@@ -1,3 +1,7 @@
+body{
+  margin-top: auto;
+}
+
 /* 🌅 Hero Carousel */
 .carousel-img {
   height: 600px;
