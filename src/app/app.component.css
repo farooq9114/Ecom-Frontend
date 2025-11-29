@@ -55,7 +55,6 @@
 
 }
 
-
 /* 🌸 Luxury Logout Toast */
 .luxury-toast {
   position: fixed;
@@ -185,4 +184,14 @@
   10% { opacity: 1; transform: translateY(0px); }
   90% { opacity: 1; transform: translateY(0px); }
   100% { opacity: 0; transform: translateY(20px); }
+}
+
+@media (max-width: 768px) {
+  .navbar-brand img {
+    height: 45px;
+  }
+
+  .navbar-toggler {
+    margin-left: auto;
+  }
 }
