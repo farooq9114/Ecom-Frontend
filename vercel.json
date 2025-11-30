@@ -1,5 +1,19 @@
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "dist/perfume-collection/server/server.mjs",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "dist/perfume-collection/browser/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "dist/perfume-collection/server/server.mjs"
+    }
   ]
 }
