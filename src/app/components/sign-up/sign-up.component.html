@@ -26,48 +26,56 @@
 
       <!-- Email -->
       <div class="mb-3">
-        <label class="form-label">Email</label>
-        <input
-          type="email"
-          class="form-control elegant-input"
-          [(ngModel)]="user.email"
-          name="email"
-          required
-          email
-          #email="ngModel"
-        />
-        <div *ngIf="email.invalid && email.touched" class="text-danger small mt-1">
-          Enter a valid email.
-        </div>
-      </div>
+  <label class="form-label">Email</label>
+
+  <input
+    type="email"
+    class="form-control elegant-input"
+    [(ngModel)]="user.email"
+    name="email"
+    required
+    pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+    #email="ngModel"
+  />
+
+  <div *ngIf="email.invalid && email.touched" class="text-danger small mt-1">
+    Enter a valid email.
+  </div>
+</div>
+
 
       <!-- Password -->
-      <div class="mb-3">
-        <label class="form-label">Password</label>
-        <input
-          type="password"
-          class="form-control elegant-input"
-          [(ngModel)]="user.password"
-          name="password"
-          required
-          minlength="8"
-          pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
-          #password="ngModel"
-        />
-        <div
-          *ngIf="password.invalid && password.touched"
-          class="text-danger small mt-1"
-        >
-          <div *ngIf="password.errors?.['required']">Password is required.</div>
-          <div *ngIf="password.errors?.['minlength']">
-            Minimum 8 characters required.
-          </div>
-          <div *ngIf="password.errors?.['pattern']">
-            {{user.password}}
-            Must include letters, numbers, and a special character.
-          </div>
-        </div>
-      </div>
+     <div class="mb-3 position-relative">
+  <label class="form-label">Password</label>
+
+  <input
+    id="pwd"
+    type="password"
+    class="form-control elegant-input pe-5"
+    [(ngModel)]="user.password"
+    name="password"
+    required
+    minlength="8"
+    pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+    #password="ngModel"
+  />
+
+  <!-- Hidden checkbox (only this, no icon) -->
+  <input type="checkbox" id="toggleEye" hidden />
+
+  <div
+    *ngIf="password.invalid && password.touched"
+    class="text-danger small mt-1"
+  >
+    <div *ngIf="password.errors?.['required']">Password is required.</div>
+    <div *ngIf="password.errors?.['minlength']">
+      Minimum 8 characters required.
+    </div>
+    <div *ngIf="password.errors?.['pattern']">
+      Must include letters, numbers, and a special character.
+    </div>
+  </div>
+</div>
 
       <!-- Address -->
       <div class="mb-3">

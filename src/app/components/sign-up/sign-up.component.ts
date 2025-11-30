@@ -17,6 +17,9 @@ export class SignUpComponent {
     mobile:'' ,
   };
 
+  showPassword: boolean = false;
+
+
   constructor(private userService: UserService, private router: Router) {}
 
   onSubmit() {
