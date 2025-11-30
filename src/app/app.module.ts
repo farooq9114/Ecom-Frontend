@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PerfumeDetailsComponent } from './components/perfume-details/perfume-details.component';
 import { CombosComponent } from './components/combos/combos.component';
 import { CombosDetailComponent } from './components/combos-detail/combos-detail.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CombosDetailComponent } from './components/combos-detail/combos-detail.
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    CommonModule,
     BrowserAnimationsModule
   ],
   providers: [

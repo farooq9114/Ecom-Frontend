@@ -3,6 +3,8 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { fader } from './route-animations';
 import { CartService } from './Services/cart.service';
 import { Subscription } from 'rxjs';
+declare var bootstrap: any;
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-root',
@@ -11,7 +13,7 @@ import { Subscription } from 'rxjs';
   standalone: false,
   animations: [fader]
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent  {
 
   title = 'perfumeCollection';
 
@@ -104,19 +106,38 @@ export class AppComponent implements AfterViewInit {
   // Navbar collapse for mobile
   // --------------------------------------------------
   closeNavbar() {
-    if (typeof window !== 'undefined') {
-      const navbar = document.getElementById('navbarNav');
-      if (navbar?.classList.contains('show')) {
-        navbar.classList.remove('show');
-      }
+  const nav = document.getElementById('navbarNav');
+  if (nav) {
+    const bsCollapse = bootstrap.Collapse.getInstance(nav);
+
+    if (bsCollapse) {
+      bsCollapse.hide();     // Close menu
+    } else {
+      // If no instance exists, create one (failsafe)
+      new bootstrap.Collapse(nav, { toggle: false }).hide();
     }
   }
+}
 
-  // --------------------------------------------------
+
+   // --------------------------------------------------
   // Route animation binder
   // --------------------------------------------------
   prepareRoute(outlet: RouterOutlet) {
     return outlet?.activatedRouteData?.['animation'];
   }
+
+toggleNavbar() {
+  const nav = document.getElementById('navbarNav');
+  if (nav) {
+    let collapse = bootstrap.Collapse.getInstance(nav);
+
+    if (!collapse) {
+      collapse = new bootstrap.Collapse(nav, { toggle: false });
+    }
+
+    collapse.toggle(); // open if closed, close if open
+  }
+}
 
 }

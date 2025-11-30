@@ -164,6 +164,15 @@
 }
 
 
+.navbar .container-fluid {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand {
+  flex: 1;
+}
+
 .toast-container {
   position: fixed;
   bottom: 20px;
@@ -186,12 +195,73 @@
   100% { opacity: 0; transform: translateY(20px); }
 }
 
+/* ---------- DESKTOP FIX: center nav pills perfectly ---------- */
+/* ---------- DESKTOP FIX: Perfect Center Alignment ---------- */
+@media (min-width: 769px) {
+
+  .navbar .container-fluid {
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /* Shift center nav slightly right on desktop */
+.center-nav {
+  transform: translateX(70px); /* adjust this value (20–60px) as needed */
+}
+
+  /* Logo stays left */
+  .navbar-brand {
+    margin-right: auto !important;
+  }
+
+  /* Center nav ALWAYS stays truly centered */
+  .center-nav {
+    margin: 0 auto !important;
+    flex: 0 1 auto !important;
+    justify-content: center !important;
+    display: flex !important;
+  }
+
+  /* Right buttons stay right aligned */
+  .right-nav {
+    margin-left: auto !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+  }
+
+  /* Spacer is only needed on small screens — disable on desktop */
+  .navbar-spacer {
+    display: none !important;
+  }
+}
+
+
+/* Mobile Fix – Make hamburger go fully right */
 @media (max-width: 768px) {
-  .navbar-brand img {
-    height: 45px;
+  .navbar-spacer {
+    display: none !important;     /* Remove the space blocker */
   }
 
   .navbar-toggler {
-    margin-left: auto;
+    margin-left: auto !important;  /* Push it fully right */
+    margin-right: 0 !important;
   }
+
+  .navbar .container-fluid {
+    justify-content: space-between !important; /* Space between logo & toggle */
+  }
+}
+
+.navbar-spacer {
+  flex: 0.3; /* adjust this value until perfectly aligned */
+}
+
+.center-nav {
+  flex: 2;
+}
+
+.right-nav {
+  display: flex;
+  justify-content: flex-end;
+  flex: 0.8;
 }

@@ -21,16 +21,18 @@
     <button
       class="navbar-toggler"
       type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
+      (click)="toggleNavbar()"
     >
-      <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon"></span>
     </button>
+
+    <div class="navbar-spacer"></div>
 
     <!-- Navbar Items -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <!-- Center Nav Items -->
-      <ul class="navbar-nav mx-auto text-center">
+      <!-- <ul class="navbar-nav mx-auto text-center"> -->
+      <ul class="navbar-nav center-nav mx-auto text-center">
         <li style="margin-right: 15px;" class="nav-item">
             <a class="nav-link" routerLink="/home" routerLinkActive="active" (click)="closeNavbar()"><strong>Home</strong></a>
         </li>
@@ -60,7 +62,8 @@
       </ul>
 
       <!-- Right Side Buttons -->
-<ul class="navbar-nav ms-lg-auto text-center">
+<!-- <ul class="navbar-nav ms-lg-auto text-center"> -->
+<ul class="navbar-nav right-nav ms-lg-auto text-center">
   <!-- <li *ngIf="username" class="nav-item mx-2">
     <strong><i class="bi bi-person-circle me-1"></i>{{ username }}</strong>
   </li> -->
