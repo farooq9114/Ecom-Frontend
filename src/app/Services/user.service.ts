@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-    private baseUrl = 'https://backend-zixw.onrender.com/user';
+    private baseUrl = 'https://springboot-6n6n.onrender.com/';
 
     constructor(private http: HttpClient) {}
 

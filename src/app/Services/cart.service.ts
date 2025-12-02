@@ -18,8 +18,7 @@ export interface Cart {
   providedIn: 'root'
 })
 export class CartService {
-
-    private baseUrl = 'https://backend-zixw.onrender.com/cart';
+    private baseUrl = 'https://springboot-6n6n.onrender.com/cart';
     cartCount = new BehaviorSubject<number>(0);
     // cartUpdated$ = new Subject<void>();
 
