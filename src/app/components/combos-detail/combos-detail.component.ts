@@ -38,6 +38,10 @@ export class CombosDetailComponent {
 
     ngOnInit(): void {
         this.route.paramMap.subscribe(() => this.loadPerfume());
+
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 0);
     }
 
     loadPerfume(): void {
