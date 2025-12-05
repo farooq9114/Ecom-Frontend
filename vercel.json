@@ -2,18 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/perfume-collection/server/server.mjs",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "dist/perfume-collection/browser/**",
+      "src": "dist/perfume-collection/**",
       "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "dist/perfume-collection/server/server.mjs"
+      "dest": "/index.html"
     }
   ]
 }
