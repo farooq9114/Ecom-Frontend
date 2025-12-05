@@ -26,47 +26,41 @@ export class PerfumeDetailsComponent implements OnInit {
   // ✅ Subscription container
   private subs = new Subscription();
 
-openZoom() {
-  this.isImageZoomed = true;
-}
+  openZoom() {
+    this.isImageZoomed = true;
+  }
 
-closeZoom() {
-  this.isImageZoomed = false;
-}
+  closeZoom() {
+    this.isImageZoomed = false;
+  }
+
   constructor(
-    private route: ActivatedRoute,
-    private productService: ProductService,
-    private cartService: CartService,
-    private router: Router,
-    private location: Location,
-    @Inject(PLATFORM_ID) private platformId: Object
+      private route: ActivatedRoute,
+      private productService: ProductService,
+      private cartService: CartService,
+      private router: Router,
+      private location: Location,
+      @Inject(PLATFORM_ID) private platformId: Object
   ) { this.router.routeReuseStrategy.shouldReuseRoute = () => false; }
 
   ngOnInit(): void {
-     this.subs.add(
+    this.subs.add(
     this.route.paramMap.subscribe(params => {
 
       this.loadPerfume();
 
-      // 💯 Force scroll AFTER Angular loads new perfume
-      setTimeout(() => {
-        if (isPlatformBrowser(this.platformId)) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    setTimeout(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, 0);
-}
-
-      }, 100);  // Delay is important
     })
   );
+
+  setTimeout(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 0);
   }
 
   ngOnDestroy(): void {
-    // 🧹 Clean all subscriptions → FIXES your WARNING
-    this.subs.unsubscribe();
-    // console.log('PerfumeDetailsComponent destroyed - all subscriptions cleared');
+      // 🧹 Clean all subscriptions → FIXES your WARNING
+      this.subs.unsubscribe();
+      // console.log('PerfumeDetailsComponent destroyed - all subscriptions cleared');
   }
 
   loadPerfume(): void {
@@ -97,8 +91,6 @@ closeZoom() {
     this.router.navigate(['/perfume', id]);
   }, 250);
 }
-
-
 
   addToCart(perfume: any) {
     const userIdStr = sessionStorage.getItem('uId');
