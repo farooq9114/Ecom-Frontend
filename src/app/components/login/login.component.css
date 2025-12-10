@@ -71,16 +71,18 @@ h3 {
 
   /* Override container spacing for this mode */
   .container {
-    margin-top: auto !important;
-    margin-bottom: auto !important;
+  margin-top: 40px !important;         /* Slightly up */
+  margin-bottom: auto !important;
 
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    min-height: 100vh;
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
+  display: flex !important;
+  justify-content: center !important;   /* Center horizontally */
+  align-items: flex-start !important;   /* Start a little higher */
+
+  min-height: 100vh;
+  padding-top: 10px;
+}
+
+
 }
 
 .custom-toast {

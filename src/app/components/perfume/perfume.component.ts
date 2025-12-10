@@ -80,4 +80,5 @@ export class PerfumeComponent {
         }
         this.filteredPerfumes = filtered;
     }
+
 }

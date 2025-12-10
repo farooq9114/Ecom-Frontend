@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CartService } from '../../Services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -20,9 +21,10 @@ export class CartComponent {
     showToast = false;
     toastMessage = '';
 
-    constructor(private cartService: CartService) {}
+    constructor(private cartService: CartService, private router: Router) {}
 
     ngOnInit(): void {
+
         // ✅ Fetch userId from localStorage
         this.storedUserId = sessionStorage.getItem('uId');
         // console.log('---------------------',this.storedUserId)
@@ -34,6 +36,12 @@ export class CartComponent {
         } else {
             this.isLoggedIn = false;
         }
+
+        if (!this.storedUserId) {
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 1000);
+  }
     }
 
     //display cart item on the screen
@@ -113,6 +121,22 @@ export class CartComponent {
         }
     }
 
+    toggleCoupon() {
+  if (this.discount > 0) {
+    // Coupon is already applied → remove it
+    this.removeCoupon();
+  } else {
+    // Try applying coupon
+    this.applyCoupon();
+  }
+}
+
+    applySuggestedCoupon() {
+        this.couponCode = 'FIRST10';
+        this.applyCoupon();
+        this.showSuccessToast("🎉 Coupon FIRST10 applied!");
+    }
+
     // Add method to update quantity manually
     updateQuantity(item: any, newQty: number): void {
         if (newQty < 1) return;
@@ -150,6 +174,18 @@ export class CartComponent {
 
      // 🔥 **Trigger from modal**
   confirmClearCart() {
+
+      (document.activeElement as HTMLElement)?.blur();
+
+  // ⭐ FIX 2: Hide modal safely (works with TypeScript)
+  const modalElement = document.getElementById('clearCartModal');
+  if (modalElement) {
+    const bootstrapModal = (window as any).bootstrap?.Modal.getInstance(modalElement)
+      || new (window as any).bootstrap.Modal(modalElement);
+
+    bootstrapModal.hide();
+  }
+
     if (!this.userId) {
       this.showSuccessToast('⚠️ Please log in to clear the cart.');
       return;

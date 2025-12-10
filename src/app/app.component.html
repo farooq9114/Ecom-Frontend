@@ -8,7 +8,7 @@
 >
   <div class="container-fluid">
     <!-- Left Side: Logo -->
-    <a class="navbar-brand d-flex align-items-center me-auto" routerLink="/perfumes">
+    <a class="navbar-brand d-flex align-items-center me-auto" routerLink="/home">
       <img
         src="https://res.cloudinary.com/dmm7meccp/image/upload/v1762878396/Screenshot_2025-11-11_213848-removebg-preview_1_v8ibnr.png"
         alt="Perfume Collection Logo"
@@ -64,9 +64,6 @@
       <!-- Right Side Buttons -->
 <!-- <ul class="navbar-nav ms-lg-auto text-center"> -->
 <ul class="navbar-nav right-nav ms-lg-auto text-center">
-  <!-- <li *ngIf="username" class="nav-item mx-2">
-    <strong><i class="bi bi-person-circle me-1"></i>{{ username }}</strong>
-  </li> -->
 
   <li *ngIf="!username" class="nav-item ms-3">
           <a
@@ -129,8 +126,8 @@
       <router-outlet #outlet="outlet"></router-outlet>
     </div>
   </div>
+  <app-footer *ngIf="showFooter()"></app-footer>
 
-  <app-footer></app-footer>
 </div>
 
 

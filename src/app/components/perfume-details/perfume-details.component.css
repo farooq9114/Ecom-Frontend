@@ -166,3 +166,14 @@ body {
     padding: 18px 12px !important;
   }
 }
+
+.btn-outline-black {
+  border: 1px solid #000;
+  color: #000;
+  background: transparent;
+}
+
+.btn-outline-black:hover {
+  background: #000;
+  color: #fff;
+}

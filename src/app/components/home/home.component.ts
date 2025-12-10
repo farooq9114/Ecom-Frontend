@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../../Services/product.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-home',
@@ -9,7 +10,7 @@ import { ProductService } from '../../Services/product.service';
 })
 
 export class HomeComponent {
-      constructor(private productService: ProductService){
+      constructor(private productService: ProductService, private router: Router){
         //this.productService.getProducts()
     }
 
@@ -98,5 +99,12 @@ export class HomeComponent {
         }
     }
 
+    goToPerfume() {
+        this.router.navigate(['/perfumes']);
+    }
+
+    goToCombo(){
+        this.router.navigate(['/combos']);
+    }
 
 }

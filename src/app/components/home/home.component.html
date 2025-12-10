@@ -13,24 +13,8 @@
 
     <div class="coupon-line line-1">
       <span class="emoji">🎁</span>
-      <strong>Use Coupon:</strong>
-      <span id="couponText" class="coupon-code">{{ couponCode}}</span>
-
-      <button
-        class="copy-icon-btn"
-        (click)="copyCoupon()"
-        type="button"
-        title="Copy coupon code"
-      >
-        <span class="icon tick-icon" [class.hidden]="!copied">✔</span>
-        <i class="bi bi-copy copy-icon" [class.hidden]="copied"></i>
-      </button>
-    </div>
-
-    <div class="coupon-line line-2">
-      — Flat 10% Off
-      <span class="divider">| </span>
-      <span class="valid">Valid till December</span>
+      <strong>Use Coupon for Flat 10% Off - <span class="valid"> Valid till December</span></strong>
+      <!-- <span id="couponText" class="coupon-code">{{ couponCode}}</span> -->
     </div>
 
 </div>
@@ -119,10 +103,11 @@
     <div class="col-6 col-md-4 col-lg-3 perfume-card">
       <div class="perfume-img rounded-circle overflow-hidden shadow-lg mx-auto">
         <img
-          src="https://res.cloudinary.com/dmm7meccp/image/upload/v1763628944/men_1_s6zair.webp"
-          alt="Featured Perfume 1"
-          class="img-fluid w-100 h-100"
-        />
+            src="https://res.cloudinary.com/dmm7meccp/image/upload/v1763628944/men_1_s6zair.webp"
+            class="img-fluid w-100 h-100"
+            (click)="goToPerfume()"
+            style="cursor: pointer;"
+        >
       </div>
       <h5 class="mt-3 fw-semibold">Urban Leather</h5>
       <p class="text-muted small">Strong • Masculine • Long-lasting</p>
@@ -132,10 +117,11 @@
     <div class="col-6 col-md-4 col-lg-3 perfume-card">
       <div class="perfume-img rounded-circle overflow-hidden shadow-lg mx-auto">
         <img
-          src="https://res.cloudinary.com/dmm7meccp/image/upload/v1763585408/Urban_Leather-2_tlfxwc.webp"
-          alt="Featured Perfume 2"
-          class="img-fluid w-100 h-100"
-        />
+            src="https://res.cloudinary.com/dmm7meccp/image/upload/v1763585408/Urban_Leather-2_tlfxwc.webp"
+            class="img-fluid w-100 h-100"
+            (click)="goToPerfume()"
+            style="cursor: pointer;"
+        >
       </div>
       <h5 class="mt-3 fw-semibold">Royal Musk</h5>
       <p class="text-muted small">Elegant • Smooth • Premium Aroma</p>
@@ -145,10 +131,11 @@
     <div class="col-6 col-md-4 col-lg-3 perfume-card">
       <div class="perfume-img rounded-circle overflow-hidden shadow-lg mx-auto">
         <img
-          src="https://res.cloudinary.com/dqxlmkag1/image/upload/v1761909291/merj_zxka3s.jpg"
-          alt="Featured Perfume 3"
-          class="img-fluid w-100 h-100"
-        />
+            src="https://res.cloudinary.com/dqxlmkag1/image/upload/v1761909291/merj_zxka3s.jpg"
+            class="img-fluid w-100 h-100"
+            (click)="goToCombo()"
+            style="cursor: pointer;"
+        >
       </div>
       <h5 class="mt-3 fw-semibold">Merj Essence</h5>
       <p class="text-muted small">Fresh • Modern • Versatile</p>

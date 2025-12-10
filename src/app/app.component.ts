@@ -140,4 +140,8 @@ toggleNavbar() {
   }
 }
 
+showFooter() {
+  return this.router.url === '/home';
+}
+
 }

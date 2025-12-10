@@ -95,4 +95,42 @@
 }
 
 
+.eye-icon {
+  position: absolute;
+  top: 38px;
+  right: 12px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #6c757d;
+}
+
 /* When checkbox is checked → toggle eye icon */
+
+/* MOBILE FIX */
+@media (max-width: 576px) {
+  .signup-container {
+    padding: 20px !important;
+    min-height: auto; /* stop forcing full screen */
+    margin: 20px 10px 0 10px;
+  }
+
+  .signup-card {
+    max-width: 100%;
+    padding: 20px !important;
+    margin: 40px 10px 0 10px;  /* 👈 Push down by 40px */
+  }
+
+  .signup-title {
+    font-size: 1.4rem;
+  }
+
+  .elegant-input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .btn-royal {
+    font-size: 15px;
+    padding: 10px 25px;
+  }
+}

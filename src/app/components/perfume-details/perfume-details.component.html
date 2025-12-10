@@ -14,11 +14,11 @@
 <div *ngIf="perfume; else loading" class="container mt-4 perfume-detail-container">
 
   <!-- 🔙 Back Button -->
-  <div class="mb-3">
-    <button class="btn btn-outline-danger" (click)="goBack()">
-      <i style="color:black" class="bi bi-arrow-left"></i> Back
-    </button>
-  </div>
+   <div class="mb-3">
+        <button class="btn btn-outline-black" style="margin-left: 12px;" (click)="goBack()">
+            <i class="bi bi-arrow-left"></i> Back
+        </button>
+    </div>
 
   <!-- 🔍 Image Zoom Modal -->
   <div class="image-modal" [class.show]="isImageZoomed" (click)="closeZoom()">

@@ -71,17 +71,29 @@
                  placeholder="Enter Coupon Code"
                  [(ngModel)]="couponCode">
 
-          <button class="btn btn-dark w-100 mt-2 apply-btn" (click)="applyCoupon()">Apply</button>
+                <div class="coupon-suggestion mt-3"
+             (click)="discount > 0 ? removeCoupon() : applySuggestedCoupon()">
+
+          <div class="left">
+            <div class="coupon-title">
+              Use Code: <strong>FIRST10</strong>
+            </div>
+            <div class="coupon-desc">
+              Flat 10% OFF • Valid for all users
+            </div>
+          </div>
+
+          <div class="right">
+            <button class="apply-btn-small"
+                    [ngClass]="discount > 0 ? 'remove-btn' : ''">
+              {{ discount > 0 ? 'Remove' : 'Apply' }}
+            </button>
+          </div>
+        </div>
 
           <p class="text-success mt-2" *ngIf="discount > 0">
             🎉 Coupon Applied! You saved ₹{{ discount | number:'1.0-0' }}
           </p>
-
-          <button *ngIf="discount > 0"
-                  class="btn btn-outline-danger w-100 mt-2"
-                  (click)="removeCoupon()">
-            Remove Coupon
-          </button>
 
           <p class="text-danger mt-2" *ngIf="couponError">
             {{ couponError }}
@@ -136,7 +148,7 @@
 
       <div class="modal-header">
         <h5 class="modal-title">Clear Cart?</h5>
-        <button type="button" class="btn-close" ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <div class="modal-body">
